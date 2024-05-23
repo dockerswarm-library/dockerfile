@@ -1,6 +1,17 @@
 # dockerfile
 A collections of scripts and tools used for building Container Images
 
+## Recommended for `docker-entrypoint.sh``
+
+Sometime is is important to give a bit of time for the Docker engine to configure the network and DNS resolution for your serivce if you intended to use the **Docker Service Discovery** mechanism.
+
+```sh
+# !!! IMPORTANT !!!
+# ! Allow time for Docker to configure the network and DNS resolution
+entrypoint_log "Allow time for Docker to configure the network and DNS resolution..."
+sleep ${DOCKERSWARM_STARTUP_DELAY:-10}
+```
+
 ## Tips and Tricks
 
 ### Resolve domain IP addresses using Docker Service Discovery
