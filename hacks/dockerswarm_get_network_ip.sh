@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Do a reverse lookup on the IP address to get the network name using `dig` command
+# Get IP address using the Docker service network name instead of interface name
 function dockerswarm_get_network_ip() {
     local network_name=$1
     if [ -z "$network_name" ]; then
