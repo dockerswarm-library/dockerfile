@@ -7,9 +7,8 @@ Sometime is is important to give a bit of time for the Docker engine to configur
 
 ```sh
 # !!! IMPORTANT !!!
-# ! Allow time for Docker to configure the network and DNS resolution
-entrypoint_log "Allow time for Docker to configure the network and DNS resolution..."
-sleep ${DOCKERSWARM_STARTUP_DELAY:-10}
+entrypoint_log "Waiting for Docker to configure the network and DNS resolution... (${DOCKERSWARM_STARTUP_DELAY}s)"
+sleep ${DOCKERSWARM_STARTUP_DELAY:-15}
 ```
 
 ## Tips and Tricks
