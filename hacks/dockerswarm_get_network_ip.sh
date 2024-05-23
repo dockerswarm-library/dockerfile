@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Do a reverse lookup on the IP address to get the network name
+# Do a reverse lookup on the IP address to get the network name using `dig` command
 function dockerswarm_get_network_ip() {
     local network_name=$1
     if [ -z "$network_name" ]; then
@@ -10,7 +10,8 @@ function dockerswarm_get_network_ip() {
     # Loop through assigned IP addresses to the host
     for ip in $(hostname -i); do
         # Query the PTR record for the IP address
-        local ptr_record=$(host "$ip" | cut -d ' ' -f 5)
+        # local ptr_record=$(host "$ip" | cut -d ' ' -f 5)
+        local ptr_record=$(dig +short -x "$ip" | cut -d ' ' -f 4)
         # If the PTR record is empty, skip to the next IP address
         if [ -z "$ptr_record" ]; then
             continue
