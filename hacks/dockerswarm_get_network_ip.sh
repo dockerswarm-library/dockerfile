@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Get IP address using the Docker service network name instead of interface name
-function dockerswarm_get_network_ip() {
+function dockerswarm_network_addr() {
     local network_name=$1
     if [ -z "$network_name" ]; then
-        echo "[dockerswarm_get_network_ip]: command line is not complete, network name is required"
+        echo "[dockerswarm_network_addr]: command line is not complete, network name is required"
         return 1
     fi
     # Loop through assigned IP addresses to the host
@@ -25,8 +25,8 @@ function dockerswarm_get_network_ip() {
         fi
     done
 
-    echo "[dockerswarm_get_network_ip]: can't find network '$network_name'"
+    echo "[dockerswarm_network_addr]: can't find network '$network_name'"
     return 2
 }
 
-dockerswarm_get_network_ip "$@"
+dockerswarm_network_addr "$@"
