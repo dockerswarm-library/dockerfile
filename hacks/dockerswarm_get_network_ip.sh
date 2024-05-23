@@ -10,8 +10,7 @@ function dockerswarm_network_addr() {
     # Loop through assigned IP addresses to the host
     for ip in $(hostname -i); do
         # Query the PTR record for the IP address
-        # local ptr_record=$(host "$ip" | cut -d ' ' -f 5)
-        local ptr_record=$(dig +short -x "$ip" | cut -d ' ' -f 4)
+        local ptr_record=$(host "$ip" | cut -d ' ' -f 5)
         # If the PTR record is empty, skip to the next IP address
         if [ -z "$ptr_record" ]; then
             continue
